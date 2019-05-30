@@ -1,0 +1,16 @@
+server:
+  type: simple
+  rootPath: /money-transfer
+  applicationContextPath: /
+  connector:
+    type: http
+  # enable api return details if json cannot be deserialized
+  detailedJsonProcessingExceptionMapper: true
+
+logging:
+  level: INFO
+  loggers:
+    "com.ivanbochko.moneytransfer":
+      level: DEBUG
+  appenders:
+    - type: console
