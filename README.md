@@ -1,5 +1,5 @@
-# money-transfer
-RESTful API for money transfers between accounts.
+# amount-transfer
+RESTful API for amount transfers between accounts.
 
 ### Build
 > mvn clean install
@@ -7,8 +7,8 @@ RESTful API for money transfers between accounts.
 ### Run
 With default 8080 port:
 
-> java -jar target/money-transfer-1.0.jar
+> java -jar target/amount-transfer-1.0.jar
 
 Or with custom port:
 
-> java -jar target/money-transfer-1.0.jar -Ddw.server.connector.port=9999
+> java -jar target/amount-transfer-1.0.jar -Ddw.server.connector.port=9999
