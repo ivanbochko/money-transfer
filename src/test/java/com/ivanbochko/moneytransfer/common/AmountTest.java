@@ -1,4 +1,4 @@
-package com.ivanbochko.moneytransfer.model;
+package com.ivanbochko.moneytransfer.common;
 
 import org.junit.Test;
 
@@ -6,10 +6,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AmountTest {
     @Test
-    public void shouldCreateAmountFromFloatingPoint() {
+    public void shouldCreateAmountFromDecimalWith5DigitsPrecision() {
         Amount amount = Amount.of(1587.9944123);
 
-        assertThat(amount).isEqualTo(new Amount(158799441));
+        assertThat(amount.toDouble()).isEqualTo(1587.99441);
     }
 
     @Test
@@ -17,6 +17,6 @@ public class AmountTest {
         double value = 1587.99441;
         Amount amount = Amount.of(value);
 
-        assertThat(amount.asDouble()).isEqualTo(value);
+        assertThat(amount.toDouble()).isEqualTo(value);
     }
 }

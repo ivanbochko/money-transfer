@@ -14,3 +14,15 @@ logging:
       level: DEBUG
   appenders:
     - type: console
+
+# App supposed to work for a bank with unique identifier,
+# to distinguish intra-bank transfers and inter-bank transfers
+bankIdentifier: Barklays
+
+# Static fx rates: currency with base currency USD. Value stands for USD per Unit.
+# Source: https://www.xe.com/currencytables/?from=USD
+fxRates:
+  USD: 1.0
+  EUR: 1.1179080037
+  GBP: 1.2645224653
+  PLN: 0.2610509437

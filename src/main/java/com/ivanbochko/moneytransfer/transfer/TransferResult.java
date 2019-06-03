@@ -1,4 +1,4 @@
-package com.ivanbochko.moneytransfer.application;
+package com.ivanbochko.moneytransfer.transfer;
 
 import java.util.List;
 

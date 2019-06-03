@@ -1,4 +1,4 @@
-package com.ivanbochko.moneytransfer.model;
+package com.ivanbochko.moneytransfer.common;
 
 public final class Money {
     private final Amount amount;

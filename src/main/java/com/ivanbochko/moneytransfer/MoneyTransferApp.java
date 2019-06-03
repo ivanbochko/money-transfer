@@ -1,6 +1,7 @@
 package com.ivanbochko.moneytransfer;
 
-import com.ivanbochko.moneytransfer.health.StorageHealthCheck;
+import com.ivanbochko.moneytransfer.common.MoneyTransferAppConfig;
+import com.ivanbochko.moneytransfer.common.health.StorageHealthCheck;
 import io.dropwizard.Application;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.setup.Bootstrap;

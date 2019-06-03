@@ -1,4 +1,4 @@
-package com.ivanbochko.moneytransfer.health;
+package com.ivanbochko.moneytransfer.common.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

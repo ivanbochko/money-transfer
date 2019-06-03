@@ -1,8 +1,8 @@
-package com.ivanbochko.moneytransfer.model;
+package com.ivanbochko.moneytransfer.common;
 
 
 /**
- * Subset of currencies from ISO 4217
+ * Subset of currencies of ISO 4217
  */
 public enum Currency {
     EUR("Euro"),

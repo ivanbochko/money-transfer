@@ -1,4 +1,6 @@
-package com.ivanbochko.moneytransfer.model;
+package com.ivanbochko.moneytransfer.account;
+
+import com.ivanbochko.moneytransfer.common.Currency;
 
 public final class BankAccount {
     private final String bank;
@@ -7,6 +9,9 @@ public final class BankAccount {
     private final Currency currency;
 
     public BankAccount(String bank, String customer, String account, Currency currency) {
+        if (bank == null || customer == null || account == null || currency == null) {
+            throw new IllegalArgumentException("Cannot construct bank account.");
+        }
         this.bank = bank;
         this.customer = customer;
         this.account = account;
