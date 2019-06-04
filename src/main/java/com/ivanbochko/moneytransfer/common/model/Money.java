@@ -1,5 +1,8 @@
-package com.ivanbochko.moneytransfer.common;
+package com.ivanbochko.moneytransfer.common.model;
 
+import lombok.Value;
+
+@Value
 public final class Money {
     private final Amount amount;
     private final Currency currency;
@@ -10,13 +13,5 @@ public final class Money {
         }
         this.amount = amount;
         this.currency = currency;
-    }
-
-    public Amount getAmount() {
-        return amount;
-    }
-
-    public Currency getCurrency() {
-        return currency;
     }
 }

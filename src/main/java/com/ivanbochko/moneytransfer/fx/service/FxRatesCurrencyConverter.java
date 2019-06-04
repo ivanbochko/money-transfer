@@ -1,12 +1,13 @@
-package com.ivanbochko.moneytransfer.fx;
+package com.ivanbochko.moneytransfer.fx.service;
 
-import com.ivanbochko.moneytransfer.common.Amount;
-import com.ivanbochko.moneytransfer.common.Currency;
-import com.ivanbochko.moneytransfer.common.Money;
+import com.ivanbochko.moneytransfer.common.model.Amount;
+import com.ivanbochko.moneytransfer.common.model.Currency;
+import com.ivanbochko.moneytransfer.common.model.Money;
+import com.ivanbochko.moneytransfer.fx.CurrencyConverter;
+import com.ivanbochko.moneytransfer.fx.FxRatesProvider;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.Map;
 
 @Singleton
 public class FxRatesCurrencyConverter implements CurrencyConverter {

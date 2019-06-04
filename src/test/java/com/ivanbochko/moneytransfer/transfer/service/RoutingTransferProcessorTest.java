@@ -1,27 +1,21 @@
-package com.ivanbochko.moneytransfer.transfer;
+package com.ivanbochko.moneytransfer.transfer.service;
 
-import com.ivanbochko.moneytransfer.account.BankAccount;
-import com.ivanbochko.moneytransfer.common.Amount;
-import com.ivanbochko.moneytransfer.common.Currency;
+import com.ivanbochko.moneytransfer.account.model.BankAccount;
+import com.ivanbochko.moneytransfer.common.model.Amount;
+import com.ivanbochko.moneytransfer.common.model.Currency;
+import com.ivanbochko.moneytransfer.transfer.TransferProcessor;
+import com.ivanbochko.moneytransfer.transfer.model.Transfer;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
-@RunWith(MockitoJUnitRunner.class)
 public class RoutingTransferProcessorTest {
-    @Mock
-    private InnerTransferProcessor innerTransferProcessor;
-
-    @Mock
-    private InterbankTransferProcessor interbankTransferProcessor;
-
-    @InjectMocks
-    private RoutingTransferProcessor routingTransferProcessor;
+    private TransferProcessor innerTransferProcessor = mock(TransferProcessor.class);
+    private TransferProcessor interbankTransferProcessor = mock(TransferProcessor.class);
+    private RoutingTransferProcessor routingTransferProcessor =
+            new RoutingTransferProcessor(innerTransferProcessor, interbankTransferProcessor);
 
     @Test
     public void shouldCallIntraBankForSameBanks() {
@@ -54,6 +48,4 @@ public class RoutingTransferProcessorTest {
     private BankAccount bankAccount(String bankName, String name) {
         return new BankAccount(bankName, name, "Savings", Currency.GBP);
     }
-
-
 }

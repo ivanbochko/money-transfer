@@ -1,7 +1,9 @@
-package com.ivanbochko.moneytransfer.account;
+package com.ivanbochko.moneytransfer.account.model;
 
-import com.ivanbochko.moneytransfer.common.Currency;
+import com.ivanbochko.moneytransfer.common.model.Currency;
+import lombok.Value;
 
+@Value
 public final class BankAccount {
     private final String bank;
     private final String customer;
@@ -16,21 +18,5 @@ public final class BankAccount {
         this.customer = customer;
         this.account = account;
         this.currency = currency;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public String getCustomer() {
-        return customer;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public Currency getCurrency() {
-        return currency;
     }
 }

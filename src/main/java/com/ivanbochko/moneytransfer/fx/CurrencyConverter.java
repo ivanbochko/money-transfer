@@ -1,8 +1,8 @@
 package com.ivanbochko.moneytransfer.fx;
 
-import com.ivanbochko.moneytransfer.common.Amount;
-import com.ivanbochko.moneytransfer.common.Currency;
-import com.ivanbochko.moneytransfer.common.Money;
+import com.ivanbochko.moneytransfer.common.model.Amount;
+import com.ivanbochko.moneytransfer.common.model.Currency;
+import com.ivanbochko.moneytransfer.common.model.Money;
 
 public interface CurrencyConverter {
 

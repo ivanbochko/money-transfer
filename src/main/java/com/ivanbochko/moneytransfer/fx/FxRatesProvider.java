@@ -1,6 +1,6 @@
 package com.ivanbochko.moneytransfer.fx;
 
-import com.ivanbochko.moneytransfer.common.Currency;
+import com.ivanbochko.moneytransfer.common.model.Currency;
 
 /**
  * Provides FX rate against base currency (USD)

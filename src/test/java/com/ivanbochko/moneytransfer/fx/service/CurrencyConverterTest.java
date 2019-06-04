@@ -1,8 +1,11 @@
-package com.ivanbochko.moneytransfer.fx;
+package com.ivanbochko.moneytransfer.fx.service;
 
-import com.ivanbochko.moneytransfer.common.Amount;
-import com.ivanbochko.moneytransfer.common.Currency;
-import com.ivanbochko.moneytransfer.common.Money;
+import com.ivanbochko.moneytransfer.common.model.Amount;
+import com.ivanbochko.moneytransfer.common.model.Currency;
+import com.ivanbochko.moneytransfer.common.model.Money;
+import com.ivanbochko.moneytransfer.fx.CurrencyConverter;
+import com.ivanbochko.moneytransfer.fx.FxRatesProvider;
+import com.ivanbochko.moneytransfer.fx.service.FxRatesCurrencyConverter;
 import org.junit.Before;
 import org.junit.Test;
 

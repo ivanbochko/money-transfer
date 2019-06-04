@@ -1,8 +1,10 @@
-package com.ivanbochko.moneytransfer.transfer;
+package com.ivanbochko.moneytransfer.transfer.model;
 
-import com.ivanbochko.moneytransfer.account.BankAccount;
-import com.ivanbochko.moneytransfer.common.Amount;
+import com.ivanbochko.moneytransfer.account.model.BankAccount;
+import com.ivanbochko.moneytransfer.common.model.Amount;
+import lombok.Value;
 
+@Value
 public final class Transfer {
     private final BankAccount sender;
     private final BankAccount recipient;
