@@ -1,11 +1,9 @@
-package com.ivanbochko.moneytransfer.application;
+package com.ivanbochko.moneytransfer.common;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.ivanbochko.moneytransfer.account.BankAccountCreator;
 import com.ivanbochko.moneytransfer.account.model.BankAccount;
-import com.ivanbochko.moneytransfer.common.MainModule;
-import com.ivanbochko.moneytransfer.common.MoneyTransferAppConfig;
 import com.ivanbochko.moneytransfer.common.model.Amount;
 import com.ivanbochko.moneytransfer.common.model.Currency;
 import com.ivanbochko.moneytransfer.common.model.Money;

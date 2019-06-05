@@ -2,8 +2,8 @@ package com.ivanbochko.moneytransfer.fx;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.ivanbochko.moneytransfer.common.model.Currency;
 import com.ivanbochko.moneytransfer.common.MoneyTransferAppConfig;
+import com.ivanbochko.moneytransfer.common.model.Currency;
 import com.ivanbochko.moneytransfer.fx.service.ConfigStaticFxRatesProvider;
 import com.ivanbochko.moneytransfer.fx.service.FxRatesCurrencyConverter;
 

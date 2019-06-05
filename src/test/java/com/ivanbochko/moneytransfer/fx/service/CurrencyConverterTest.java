@@ -5,7 +5,6 @@ import com.ivanbochko.moneytransfer.common.model.Currency;
 import com.ivanbochko.moneytransfer.common.model.Money;
 import com.ivanbochko.moneytransfer.fx.CurrencyConverter;
 import com.ivanbochko.moneytransfer.fx.FxRatesProvider;
-import com.ivanbochko.moneytransfer.fx.service.FxRatesCurrencyConverter;
 import org.junit.Before;
 import org.junit.Test;
 

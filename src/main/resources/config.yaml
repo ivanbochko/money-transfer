@@ -21,7 +21,6 @@ bankIdentifier: Barklays
 
 # System Bank Account to let transfer money from initially (allowing "unlimited" debiting)
 systemBankAccount:
-  bank: Barklays
   customer: Barklays System
   account: Barklays Operator Account
   currency: GBP

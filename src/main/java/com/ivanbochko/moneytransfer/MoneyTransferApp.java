@@ -5,6 +5,8 @@ import com.google.inject.Injector;
 import com.ivanbochko.moneytransfer.common.MainModule;
 import com.ivanbochko.moneytransfer.common.MoneyTransferAppConfig;
 import com.ivanbochko.moneytransfer.common.health.StorageHealthCheck;
+import com.ivanbochko.moneytransfer.resources.account.AccountsResource;
+import com.ivanbochko.moneytransfer.resources.transfer.TransfersResource;
 import io.dropwizard.Application;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.setup.Bootstrap;
@@ -33,5 +35,7 @@ public class MoneyTransferApp extends Application<MoneyTransferAppConfig> {
         Injector injector = Guice.createInjector(module);
 
         environment.healthChecks().register(STORAGE_CHECK, injector.getInstance(StorageHealthCheck.class));
+        environment.jersey().register(injector.getInstance(AccountsResource.class));
+        environment.jersey().register(injector.getInstance(TransfersResource.class));
     }
 }

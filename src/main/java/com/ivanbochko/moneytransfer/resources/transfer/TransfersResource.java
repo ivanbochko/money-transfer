@@ -8,16 +8,22 @@ import com.ivanbochko.moneytransfer.transfer.TransferProcessor;
 import com.ivanbochko.moneytransfer.transfer.TransferResult;
 import com.ivanbochko.moneytransfer.transfer.TransfersReader;
 import com.ivanbochko.moneytransfer.transfer.model.Transfer;
-import com.ivanbochko.moneytransfer.transfer.model.TransferRecord;
 
 import javax.validation.Valid;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Path("/transfers")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @Singleton
 public class TransfersResource {
     private static final int UNPROCESSABLE = 422;
@@ -48,7 +54,9 @@ public class TransfersResource {
 
 
     @GET
-    public List<TransferRecord> getAllTransfers() {
-        return transfersReader.getAllTransfers();
+    public List<TransferView> getAllTransfers() {
+        return transfersReader.getAllTransfers().stream()
+                .map(TransferView::new)
+                .collect(toList());
     }
 }

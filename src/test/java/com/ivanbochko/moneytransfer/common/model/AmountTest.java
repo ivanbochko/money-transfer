@@ -1,6 +1,5 @@
 package com.ivanbochko.moneytransfer.common.model;
 
-import com.ivanbochko.moneytransfer.common.model.Amount;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
