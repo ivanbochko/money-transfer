@@ -8,6 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+/**
+ * Made transfer processor synchronized to assure balance read happens after last update.
+ */
 @Singleton
 public class RoutingTransferProcessor implements TransferProcessor {
     private final TransferProcessor innerTransferProcessor;
@@ -22,7 +25,7 @@ public class RoutingTransferProcessor implements TransferProcessor {
     }
 
     @Override
-    public TransferResult process(Transfer transfer) {
+    public synchronized TransferResult process(Transfer transfer) {
         if (isInnerBankTransferPredicate.test(transfer)) {
             return innerTransferProcessor.process(transfer);
         } else {

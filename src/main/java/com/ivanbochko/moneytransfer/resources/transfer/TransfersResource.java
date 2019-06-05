@@ -9,6 +9,7 @@ import com.ivanbochko.moneytransfer.transfer.TransferResult;
 import com.ivanbochko.moneytransfer.transfer.TransfersReader;
 import com.ivanbochko.moneytransfer.transfer.model.Transfer;
 
+import javax.inject.Named;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -29,16 +30,20 @@ public class TransfersResource {
     private static final int UNPROCESSABLE = 422;
     private final TransferProcessor transferProcessor;
     private final TransfersReader transfersReader;
+    private final String homeBankIdentifier;
 
     @Inject
-    public TransfersResource(TransferProcessor transferProcessor, TransfersReader transfersReader) {
+    public TransfersResource(TransferProcessor transferProcessor,
+                             TransfersReader transfersReader,
+                             @Named("bankIdentifier") String homeBankIdentifier) {
         this.transferProcessor = transferProcessor;
         this.transfersReader = transfersReader;
+        this.homeBankIdentifier = homeBankIdentifier;
     }
 
     @POST
     public Response makeTransfer(@Valid MakeTransferRequest transferRequest) {
-        BankAccount sender = transferRequest.getSender().asBankAccount();
+        BankAccount sender = transferRequest.getSender().asBankAccount(homeBankIdentifier);
         BankAccount recipient = transferRequest.getRecipient().asBankAccount();
 
         Transfer transfer = new Transfer(sender, recipient, Amount.of(transferRequest.getAmount()));

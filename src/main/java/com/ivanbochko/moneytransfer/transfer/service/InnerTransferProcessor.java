@@ -8,7 +8,7 @@ import com.ivanbochko.moneytransfer.transfer.model.Transfer;
 
 @Singleton
 public class InnerTransferProcessor implements TransferProcessor {
-   private final SuccessfulTransferCommitter transferCommitter;
+    private final SuccessfulTransferCommitter transferCommitter;
 
     @Inject
     public InnerTransferProcessor(SuccessfulTransferCommitter transferCommitter) {

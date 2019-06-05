@@ -1,5 +1,6 @@
 package com.ivanbochko.moneytransfer.resources.transfer;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ivanbochko.moneytransfer.account.model.BankAccount;
 import com.ivanbochko.moneytransfer.common.model.Currency;
 import com.ivanbochko.moneytransfer.transfer.model.Transfer;
@@ -16,6 +17,7 @@ public class TransferView {
     private String senderAccount;
     private Currency senderCurrency;
 
+    private String recipientBank;
     private String recipientCustomer;
     private String recipientAccount;
     private Currency recipientCurrency;
@@ -23,6 +25,7 @@ public class TransferView {
     private Double amountInSenderCurrency;
     private Double amountInRecipientCurrency;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime issuedUtc;
 
     TransferView(TransferRecord transferRecord) {
@@ -34,7 +37,7 @@ public class TransferView {
         senderAccount = sender.getAccount();
         senderCurrency = sender.getCurrency();
 
-
+        recipientBank = recipient.getBank();
         recipientCustomer = recipient.getCustomer();
         recipientAccount = recipient.getAccount();
         recipientCurrency = recipient.getCurrency();

@@ -2,6 +2,7 @@ package com.ivanbochko.moneytransfer.resources.transfer;
 
 import com.ivanbochko.moneytransfer.account.model.BankAccount;
 import com.ivanbochko.moneytransfer.common.model.Currency;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
@@ -10,7 +11,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
-public class TransferParty {
+@AllArgsConstructor
+public class Recipient {
     @NotBlank
     private String bank;
     @NotBlank

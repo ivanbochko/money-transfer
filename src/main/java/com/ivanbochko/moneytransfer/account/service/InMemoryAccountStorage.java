@@ -5,12 +5,13 @@ import com.ivanbochko.moneytransfer.account.AccountStorage;
 import com.ivanbochko.moneytransfer.account.model.BankAccount;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
 @Singleton
 public class InMemoryAccountStorage implements AccountStorage {
-    private final List<BankAccount> accounts = new ArrayList<>();
+    private final List<BankAccount> accounts = Collections.synchronizedList(new ArrayList<>());
 
     @Override
     public BankAccount create(BankAccount account) {
