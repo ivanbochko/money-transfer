@@ -1,18 +1,28 @@
 package com.ivanbochko.moneytransfer;
 
-import com.ivanbochko.moneytransfer.health.StorageHealthCheck;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.ivanbochko.moneytransfer.common.MainModule;
+import com.ivanbochko.moneytransfer.common.MoneyTransferAppConfig;
+import com.ivanbochko.moneytransfer.common.health.StorageHealthCheck;
+import com.ivanbochko.moneytransfer.resources.account.AccountsResource;
+import com.ivanbochko.moneytransfer.resources.transfer.TransfersResource;
 import io.dropwizard.Application;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class MoneyTransferApp extends Application<MoneyTransferAppConfig> {
-    private static final Logger logger = LoggerFactory.getLogger(MoneyTransferApp.class);
+    private static final String STORAGE_CHECK = "storageCheck";
+    private static final String SERVER = "server";
+    private static final String CONFIG_YAML = "/config.yaml";
 
     public static void main(String[] args) throws Exception {
-        new MoneyTransferApp().run("server", "/config.yaml");
+        if (args.length == 0) {
+            new MoneyTransferApp().run(SERVER, CONFIG_YAML);
+        } else {
+            new MoneyTransferApp().run(args);
+        }
     }
 
     @Override
@@ -21,6 +31,11 @@ public class MoneyTransferApp extends Application<MoneyTransferAppConfig> {
     }
 
     public void run(MoneyTransferAppConfig config, Environment environment) {
-        environment.healthChecks().register("storageCheck", new StorageHealthCheck());
+        MainModule module = new MainModule(config);
+        Injector injector = Guice.createInjector(module);
+
+        environment.healthChecks().register(STORAGE_CHECK, injector.getInstance(StorageHealthCheck.class));
+        environment.jersey().register(injector.getInstance(AccountsResource.class));
+        environment.jersey().register(injector.getInstance(TransfersResource.class));
     }
 }
