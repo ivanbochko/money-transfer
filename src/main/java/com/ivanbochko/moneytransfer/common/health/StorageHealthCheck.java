@@ -7,7 +7,8 @@ import com.ivanbochko.moneytransfer.transfer.TransferStorage;
 
 @Singleton
 public class StorageHealthCheck extends HealthCheck {
-    private static final int THRESHOLD = 1000;
+    static final int THRESHOLD = 1000;
+    static final String TOO_BIG_TRANSFER_STORAGE = "Too big transfer storage.";
     private final TransferStorage transferStorage;
 
     @Inject
@@ -17,7 +18,7 @@ public class StorageHealthCheck extends HealthCheck {
 
     protected Result check() {
         if (transferStorage.getStoreSize() > THRESHOLD) {
-            return Result.unhealthy("Too big transfer storage.");
+            return Result.unhealthy(TOO_BIG_TRANSFER_STORAGE);
         }
         return Result.healthy();
     }

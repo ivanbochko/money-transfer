@@ -8,7 +8,7 @@ public interface TransferStorage {
 
     void store(TransferRecord transfer);
 
-    int getStoreSize();
+    Integer getStoreSize();
 
     List<TransferRecord> getAllTransfers();
 }

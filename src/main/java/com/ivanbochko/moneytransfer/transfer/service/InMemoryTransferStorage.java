@@ -20,7 +20,7 @@ public class InMemoryTransferStorage implements TransferStorage {
     }
 
     @Override
-    public int getStoreSize() {
+    public Integer getStoreSize() {
         return transfers.size();
     }
 
