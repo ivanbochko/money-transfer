@@ -1,0 +1,134 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Money Transfer API"
+  },
+  "basePath" : "/money-transfer",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/accounts" : {
+      "get" : {
+        "operationId" : "getAllBankAccounts",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BankAccountView"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "createBankAccount",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/BankAccountView"
+            }
+          }
+        }
+      }
+    },
+    "/transfers" : {
+      "get" : {
+        "operationId" : "getAllTransfers",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/TransferView"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "operationId" : "makeTransfer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "BankAccountView" : {
+      "type" : "object",
+      "properties" : {
+        "bank" : {
+          "type" : "string"
+        },
+        "customer" : {
+          "type" : "string"
+        },
+        "account" : {
+          "type" : "string"
+        },
+        "currency" : {
+          "type" : "string",
+          "enum" : [ "EUR", "GBP", "USD", "PLN" ]
+        },
+        "balance" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      }
+    },
+    "TransferView" : {
+      "type" : "object",
+      "properties" : {
+        "senderCustomer" : {
+          "type" : "string"
+        },
+        "senderAccount" : {
+          "type" : "string"
+        },
+        "senderCurrency" : {
+          "type" : "string",
+          "enum" : [ "EUR", "GBP", "USD", "PLN" ]
+        },
+        "recipientBank" : {
+          "type" : "string"
+        },
+        "recipientCustomer" : {
+          "type" : "string"
+        },
+        "recipientAccount" : {
+          "type" : "string"
+        },
+        "recipientCurrency" : {
+          "type" : "string",
+          "enum" : [ "EUR", "GBP", "USD", "PLN" ]
+        },
+        "amountInSenderCurrency" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "amountInRecipientCurrency" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "issuedUtc" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    }
+  }
+}

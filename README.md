@@ -13,6 +13,13 @@ Run with custom port:
 
 > java -Ddw.server.connector.port=9999 -jar target/money-transfer-1.0.jar
 
+## API
+
+App path is '/money-transfer'
+
+Swagger is located:
+> http://localhost:8080/money-transfer/swagger
+
 ## Idea
 Application represents a bank, which is preconfigured to be a host (see config.yaml). Lets say "Barklays".
 

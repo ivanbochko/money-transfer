@@ -101,6 +101,46 @@
             <artifactId>javax.activation-api</artifactId>
             <version>1.2.0</version>
         </dependency>
+
+        <!-- swagger gen dependencies start -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.15</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-jaxrs</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-jersey2-jaxrs</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard-bundles</groupId>
+            <artifactId>dropwizard-redirect-bundle</artifactId>
+            <version>1.0.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.dropwizard</groupId>
+                    <artifactId>dropwizard-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-assets</artifactId>
+            <version>${dropwizard.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>swagger-ui</artifactId>
+            <version>3.20.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- swagger gen dependencies end -->
     </dependencies>
 
     <build>
@@ -172,6 +212,39 @@
                         <phase>test-compile</phase>
                         <goals>
                             <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>3.1.7</version>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <springmvc>false</springmvc>
+                            <locations>
+                                <location>com.ivanbochko.moneytransfer.resources.account.AccountsResource</location>
+                                <location>com.ivanbochko.moneytransfer.resources.transfer.TransfersResource</location>
+                            </locations>
+                            <basePath>/money-transfer</basePath>
+                            <schemes>http</schemes>
+                            <info>
+                                <title>Money Transfer API</title>
+                                <version>${version}</version>
+                            </info>
+                            <swaggerDirectory>${basedir}/src/main/resources</swaggerDirectory>
+                            <swaggerFileName>swagger</swaggerFileName>
+                            <swaggerApiReader>com.github.kongchen.swagger.docgen.reader.JaxrsReader</swaggerApiReader>
+                        </apiSource>
+                    </apiSources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>

@@ -7,8 +7,10 @@ import com.ivanbochko.moneytransfer.account.BankAccountCreator;
 import com.ivanbochko.moneytransfer.account.model.BankAccount;
 import com.ivanbochko.moneytransfer.common.model.Money;
 import com.ivanbochko.moneytransfer.transfer.BalanceReader;
+import io.swagger.annotations.Api;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Api
 @Path("/accounts")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -35,7 +38,7 @@ public class AccountsResource {
     }
 
     @POST
-    public BankAccountView createBankAccount(@Valid CreateBankAccountRequest account) {
+    public BankAccountView createBankAccount(@Valid @NotNull CreateBankAccountRequest account) {
         BankAccount bankAccount = bankAccountCreator.create(account.getCustomer(), account.getAccount(), account.getCurrency());
         Money balance = balanceReader.getBalance(bankAccount);
         return new BankAccountView(bankAccount, balance);

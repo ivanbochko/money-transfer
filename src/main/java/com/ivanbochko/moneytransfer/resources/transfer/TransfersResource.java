@@ -8,9 +8,11 @@ import com.ivanbochko.moneytransfer.transfer.TransferProcessor;
 import com.ivanbochko.moneytransfer.transfer.TransferResult;
 import com.ivanbochko.moneytransfer.transfer.TransfersReader;
 import com.ivanbochko.moneytransfer.transfer.model.Transfer;
+import io.swagger.annotations.Api;
 
 import javax.inject.Named;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -22,6 +24,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+@Api
 @Path("/transfers")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,7 +45,7 @@ public class TransfersResource {
     }
 
     @POST
-    public Response makeTransfer(@Valid MakeTransferRequest transferRequest) {
+    public Response makeTransfer(@Valid @NotNull MakeTransferRequest transferRequest) {
         BankAccount sender = transferRequest.getSender().asBankAccount(homeBankIdentifier);
         BankAccount recipient = transferRequest.getRecipient().asBankAccount();
 
